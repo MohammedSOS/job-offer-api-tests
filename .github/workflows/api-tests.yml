@@ -1,0 +1,31 @@
+name: API Tests - Job Offer
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  newman:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Newman
+        run: npm install -g newman newman-reporter-htmlextra
+
+      - name: Run collection
+        run: |
+          newman run job-offer-collection_Export.json \
+            --environment "Job Offer Mock Env.postman_environment.json" \
+            --reporters cli,htmlextra \
+            --reporter-htmlextra-export newman-report.html
+
+      - name: Upload rapport HTML
+        uses: actions/upload-artifact@v3
+        with:
+          name: newman-report
+          path: newman-report.html
