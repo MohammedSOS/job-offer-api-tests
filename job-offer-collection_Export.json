@@ -1,0 +1,509 @@
+{
+	"info": {
+		"_postman_id": "0395e6fe-6be7-4652-bce8-4e9a5c500a44",
+		"name": "Job Offer Microservice - Full Test Suite",
+		"description": "Comprehensive API test suite for Job Offer Microservice (CRUD, transitions, configuration, multi-tenancy)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "55687856"
+	},
+	"item": [
+		{
+			"name": "CRUD",
+			"item": [
+				{
+					"name": "Create Job Offer - Complete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"title\": \"Senior Backend Developer\", \"location\": { \"type\": \"CUSTOM\", \"address\": { \"city\": \"Paris\", \"countryCode\": \"FR\" } }, \"compensation\": { \"salaryEntries\": [ { \"type\": \"YEARLY\", \"amount\": 65000, \"currency\": \"EUR\" } ] } }"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job-offers",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create_job Offer Succes",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Company-Id",
+										"value": "{{companyId}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"title\": \"Senior Backend Developer\", \"location\": { \"type\": \"CUSTOM\", \"address\": { \"city\": \"Paris\", \"countryCode\": \"FR\" } }, \"compensation\": { \"salaryEntries\": [ { \"type\": \"YEARLY\", \"amount\": 65000, \"currency\": \"EUR\" } ] } }"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/job-offers",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"job-offers"
+									]
+								}
+							},
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n  \"id\": \"11111111-2222-3333-4444-555555555555\",\r\n  \"companyId\": \"550e8400-e29b-41d4-a716-446655440000\",\r\n  \"title\": \"Senior Backend Developer\",\r\n  \"status\": \"DRAFT\"\r\n}\r\n"
+						}
+					]
+				},
+				{
+					"name": "Get Job Offer by ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"11111111-2222-3333-4444-555555555555\",\r\n  \"companyId\": \"550e8400-e29b-41d4-a716-446655440000\",\r\n  \"title\": \"Senior Backend Developer\",\r\n  \"status\": \"DRAFT\",\r\n  \"location\": { \"type\": \"CUSTOM\", \"address\": { \"city\": \"Paris\", \"countryCode\": \"FR\" } },\r\n  \"compensation\": { \"salaryEntries\": [{ \"type\": \"YEARLY\", \"amount\": 65000, \"currency\": \"EUR\" }] }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers",
+								"{{jobOfferId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get_Job Offer Succes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Company-Id",
+										"value": "{{companyId}}"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"job-offers",
+										"{{jobOfferId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update Job Offer in DRAFT",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"title\": \"Updated Title\" }"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers",
+								"{{jobOfferId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update_Job Offer in DRAFT Succes",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "X-Company-Id",
+										"value": "{{companyId}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{ \"title\": \"Updated Title\" }"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"job-offers",
+										"{{jobOfferId}}"
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete Job Offer in DRAFT",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers",
+								"{{jobOfferId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Listing & Filtering",
+			"item": [
+				{
+					"name": "List Job Offers - Pagination",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/job-offers?page=1&size=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Job Offers - Filter by Status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/job-offers?status=PUBLISHED",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "PUBLISHED"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Job Offers - Filter by Title",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/job-offers?titleContains=Dev",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers"
+							],
+							"query": [
+								{
+									"key": "titleContains",
+									"value": "Dev"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transitions",
+			"item": [
+				{
+					"name": "Submit Offer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}/transitions/submit",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers",
+								"{{jobOfferId}}",
+								"transitions",
+								"submit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Approve Offer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}/transitions/approve",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers",
+								"{{jobOfferId}}",
+								"transitions",
+								"approve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reject Offer - With Reason",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"reason\": \"Budget constraints\" }"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}/transitions/reject",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers",
+								"{{jobOfferId}}",
+								"transitions",
+								"reject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close Offer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}/transitions/close",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers",
+								"{{jobOfferId}}",
+								"transitions",
+								"close"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reopen Offer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}/transitions/reopen",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers",
+								"{{jobOfferId}}",
+								"transitions",
+								"reopen"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "History",
+			"item": [
+				{
+					"name": "Get Transition History",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Company-Id",
+								"value": "{{companyId}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/job-offers/{{jobOfferId}}/history",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"job-offers",
+								"{{jobOfferId}}",
+								"history"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://api.staging.example.com/job-offers/v1"
+		},
+		{
+			"key": "companyId",
+			"value": "550e8400-e29b-41d4-a716-446655440000"
+		},
+		{
+			"key": "jobOfferId",
+			"value": "11111111-2222-3333-4444-555555555555"
+		}
+	]
+}
